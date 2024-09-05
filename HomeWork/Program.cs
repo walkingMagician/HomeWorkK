@@ -12,8 +12,10 @@ namespace HomeWork
     {
         static void Main(string[] args)
         {
-            Program.miniCalculator();
-            Program.chess();
+            //Program.miniCalculator();
+            //Program.chess();
+
+            Program.Geometri(5);
 
         }
         static public void chess() // big-simple-chess
@@ -68,8 +70,117 @@ namespace HomeWork
                 }
                 Console.WriteLine(result);
             }
-            
+        }
 
+        static public void Geometri(int value)
+        {
+            Console.WriteLine("0) ");
+            for (int i = 0; i < value; i++) // square 0
+            {
+                Console.WriteLine("*****");
+            }
+
+            Console.WriteLine("\n1) ");
+            for (int i = 1; i <= value; i++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("\n2) ");
+            for (int i = value; i > 0; i--)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("\n3) ");
+            for (int i = 0; i < value; i++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    Console.Write(" ");
+                }
+                for (int k = value; k > i; k--)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("\n4) ");
+            for (int i = 0; i <= value; i++)
+            {
+                for (int j = value; j > i; j--)
+                {
+                    Console.Write(" ");
+                }
+                for (int j = 0; j < i; j++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("\n5) ");
+            // верхняя ромба 
+            for (int i = 0; i <= value; i++)
+            {
+                for (int j = value; j > i; j--)
+                {
+                    Console.Write(" ");
+                }
+                Console.Write("/");
+                for (int k = 0; k < (i - 1) * 2 + 2; k++)
+                {
+                    Console.Write(" ");
+                }
+                if (i > -1)
+                {
+                    Console.Write("\\");
+                }
+                Console.WriteLine();
+            }
+            // Нижняя половина ромба
+            for (int i = value; i >= 0; i--)
+            {
+                for (int j = value; j > i; j--)
+                {
+                    Console.Write(" ");
+                }
+                Console.Write("\\");
+                for (int k = 0; k < (i) * 2; k++)
+                {
+                    Console.Write(" ");
+                }
+                if (i > -1)
+                {
+                    Console.Write("/");
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("\n6) ");
+            for (int i = 0; i < value; i++)
+            {
+                for (int j = 0; j < value; j++)
+                {
+                    if ((i + j) % 2 == 0)
+                    {
+                        Console.Write("+ ");
+                    }
+                    else
+                    {
+                        Console.Write("- ");
+                    }
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

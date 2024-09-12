@@ -129,6 +129,7 @@ namespace HomeWork
             }
             Console.WriteLine("\n5) ");
             // верхняя ромба 
+
             for (int i = 0; i <= value; i++)
             {
                 for (int j = value; j > i; j--)

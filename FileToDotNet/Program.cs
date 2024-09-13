@@ -14,7 +14,15 @@ namespace FileToDotNet
         static void Main(string[] args)
         {
             
-            string filePath = "C:\\Users\\Юрий\\source\\repos\\HomeWork\\FileToDotNet\\201 RAW.txt";
+            string FilePath = "C:\\Users\\Егорка\\Source\\Repos\\HomeWorkK\\FileToDotNet\\201 RAW.txt";
+            File(FilePath);
+            
+
+        }
+
+        static public void File(string filePath)
+        {
+            
             try
             {
                 List<string> list = new List<string>(); // Список для хранения строк
@@ -47,9 +55,9 @@ namespace FileToDotNet
                             Console.WriteLine("Строка не была разделена на две части");
                         }
                         result = string.Join(" ", parts);
-                        sr.Close();
-                        //Console.WriteLine(result);
-                        System.IO.File.WriteAllText(filePath, result);
+                        //sr.Close();
+                        Console.WriteLine(result);
+                        //System.IO.File.WriteAllText(filePath, result);
                     }
 
                 }
@@ -59,13 +67,10 @@ namespace FileToDotNet
             {
                 Console.WriteLine(ex.Message);
             }
-            
+
             System.Diagnostics.Process.Start("notepad", filePath);
-
-
-
-
         }
+
     }
 }
 

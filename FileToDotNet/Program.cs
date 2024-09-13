@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO.Compression;
 using System.IO;
+using System.Text.RegularExpressions;
 
 
 namespace FileToDotNet
@@ -15,59 +16,40 @@ namespace FileToDotNet
         {
             
             string FilePath = "C:\\Users\\Егорка\\Source\\Repos\\HomeWorkK\\FileToDotNet\\201 RAW.txt";
-            File(FilePath);
+            FileWrite(FilePath);
             
-
         }
 
-        static public void File(string filePath)
+        static public void FileWrite(string filePath)
         {
-            
+            // столбецы 1 и 2
+            int columIndex_1 = 0; 
+            int columIndex_2 = 1;
+
             try
             {
-                List<string> list = new List<string>(); // Список для хранения строк
+                string[] lines = File.ReadAllLines(filePath); // чтение всех строк файла
 
-                string line;
-                string[] parts;
-                string result;
-                using (StreamReader sr = new StreamReader(filePath))
+                for (int i = 0; i < lines.Length; i++)
                 {
+                    // разделение строки на столбцы файла (разделение происходит при помощи пробела или табуляии)
+                    string[] colum = lines[i].Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
-                    while ((line = sr.ReadLine()) != null) // Читаем строки построчно
+                    if (colum.Length > Math.Max(columIndex_1, columIndex_2)) // чтоб не выйти за пределы массива
                     {
-                        parts = line.Split(' ', '\t'); // Метод Split возвращает массив строк
-                        if (parts.Length == 2)
-                        {
-                            string firstPart = parts[0]; // Первая часть 
-                            string secondPart = parts[1]; // Вторая часть
+                        string temp = colum[columIndex_1]; // временная переменая 
+                        colum[columIndex_1] = colum[columIndex_2];
+                        colum[columIndex_2] = temp;
 
-                            parts[0] = secondPart; // Меняются местави значения
-                            parts[1] = firstPart;
-
-
-                            // Выводим результат
-                            //Console.WriteLine("Первая часть: " + parts[0]);
-                            //Console.WriteLine("Вторая часть: " + parts[1]);
-
-                        }
-                        else
-                        {
-                            Console.WriteLine("Строка не была разделена на две части");
-                        }
-                        result = string.Join(" ", parts);
-                        //sr.Close();
-                        Console.WriteLine(result);
-                        //System.IO.File.WriteAllText(filePath, result);
+                        lines[i] = string.Join(" ", colum); // собираем обратно всё в строку
                     }
-
                 }
-
+                File.WriteAllLines(filePath, lines); // записываем обратно в файл
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
             System.Diagnostics.Process.Start("notepad", filePath);
         }
 

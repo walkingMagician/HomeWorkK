@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A3BFD4BF-3454-44B7-823F-23D110FB53A5}</ProjectGuid>
+    <ProjectGuid>{226BD923-2E7D-4501-A472-9002829DB2CD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FileToDotNet</RootNamespace>
-    <AssemblyName>FileToDotNet</AssemblyName>
+    <RootNamespace>Fraction</RootNamespace>
+    <AssemblyName>Fraction</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,15 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="201 RAW.txt" />
-    <Content Include="201.dhcpd.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

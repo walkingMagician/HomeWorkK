@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace Fraction
 {
-    internal class Calculator
+    class Calculator
     {
         private int integer { get; set; } // целое
         private int numerator { get; set; } // числитель
@@ -27,7 +27,7 @@ namespace Fraction
         {
             this.integer = integer;
             numerator = 0;
-            denominator = 0;
+            denominator = 1;
             Console.WriteLine($"Constructor first:\t\t {GetHashCode()}");
         }
 
@@ -65,41 +65,39 @@ namespace Fraction
 
         // operators 
 
-        public static bool operator ==(Calculator left, Calculator right) 
+        public static bool operator ==(Calculator left, Calculator right) // ==
         {
             left.to_wrong();
             right.to_wrong();
             return left.numerator == right.numerator && left.denominator == right.denominator;
         }
-        public static bool operator !=(Calculator left, Calculator right)
+        public static bool operator !=(Calculator left, Calculator right) // !=
         {
             left.to_wrong();
             right.to_wrong();
             return left.numerator != right.numerator || left.denominator != right.denominator;
         }
 
-        public static bool operator >(Calculator left, Calculator right)
+        public static bool operator >(Calculator left, Calculator right) // >
         {
             left.to_wrong();
             right.to_wrong();
             return left.numerator * right.denominator > left.denominator * right.numerator;
         }
 
-        public static bool operator <(Calculator left, Calculator right)
+        public static bool operator <(Calculator left, Calculator right) // <
         {
             left.to_wrong();
             right.to_wrong();
             return left.numerator * right.denominator < left.denominator * right.numerator;
         }
-        public static bool operator >=(Calculator left, Calculator right)
+        public static bool operator >=(Calculator left, Calculator right) // >=
         {
             return !(left < right);
-            
         }
-        public static bool operator <=(Calculator left, Calculator right)
+        public static bool operator <=(Calculator left, Calculator right) // <=
         {
             return !(left > right);
-            
         }
 
         public static Calculator operator ++(Calculator other) // инкремент ++ 
@@ -117,7 +115,55 @@ namespace Fraction
             if (other.denominator > 0) other.denominator--;
             return other;
         }
+        public static Calculator operator +(Calculator left, Calculator right) // +
+        {
+            left.to_wrong();
+            right.to_wrong();
+            Calculator calculator = new Calculator
+                (
+                    left.numerator * right.denominator + right.numerator * left.denominator,
+                    left.denominator * right.denominator
+                );
+            
+            return calculator.to_mixed();
+        }
 
+        public static Calculator operator -(Calculator left, Calculator right) // -
+        {
+            left.to_wrong();
+            right.to_wrong();
+            Calculator calculator = new Calculator
+                (
+                    left.numerator * right.denominator - right.numerator * left.denominator,
+                    left.denominator * right.denominator
+                );
+
+            return calculator.to_mixed();
+        }
+
+        public static Calculator operator *(Calculator left, Calculator right)
+        {
+            left.to_wrong();
+            right.to_wrong();
+            Calculator calculator = new Calculator
+                (
+                    left.numerator * right.denominator,
+                    left.denominator * right.denominator
+                );
+            return calculator.to_mixed();
+        }
+
+        public static Calculator operator /(Calculator left, Calculator right)
+        {
+            left.to_wrong();
+            right.to_wrong();
+            Calculator calculator = new Calculator
+                (
+                    left.numerator * right.denominator,
+                    left.denominator * right.denominator
+                );
+            return calculator.to_mixed();
+        }
 
         // methods
         public void print()
@@ -128,8 +174,6 @@ namespace Fraction
                 if (integer > 0) { Console.Write("("); }
                 Console.Write($"{numerator} / {denominator}");
                 if (integer > 0) { Console.Write(")"); }
-
-
             }
             else if (integer == 0)
             {

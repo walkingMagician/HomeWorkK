@@ -12,9 +12,9 @@ namespace Fraction
         {
             Calculator c1 = new Calculator(2, 3);
             Calculator c2 = new Calculator(5);
-            Calculator c3 = new Calculator();
+            Calculator c3 = new Calculator(2.6);
             //Console.WriteLine(c1 >= c2);
-            c3 = c1 * c2;
+            
 
             c1.print();
             c2.print();

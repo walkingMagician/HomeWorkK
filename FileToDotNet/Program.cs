@@ -58,9 +58,9 @@ namespace FileToDotNet
 
         static public void FileHostWrite(string filePatch)
         {
-            string fileCopy = "201.dhcpd.txt";
+            
 
-                System.Diagnostics.Process.Start("notepad", fileCopy);
+            //System.Diagnostics.Process.Start("notepad", fileCopy);
         }
 
     }

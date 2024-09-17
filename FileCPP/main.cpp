@@ -16,6 +16,6 @@ void main()
 	}
 	char line =  char();
 	std::ifstream fin;
-	fin.getline(inputFile, line)
+	
 }
 
